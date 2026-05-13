@@ -177,6 +177,16 @@ const successOverlay= $('successOverlay');
 const restartBtn    = $('restartBtn');
 const closeBtn      = $('closeBtn');
 
+const photoStartBtn   = $('photoStartBtn');
+const cameraWrap      = $('cameraWrap');
+const cameraVideo     = $('cameraVideo');
+const photoShootBtn   = $('photoShootBtn');
+const photoCancelBtn  = $('photoCancelBtn');
+const photoResult     = $('photoResult');
+const photoCanvas     = $('photoCanvas');
+const photoDownloadBtn= $('photoDownloadBtn');
+const photoRetryBtn   = $('photoRetryBtn');
+
 const intro1Panel     = $('intro1Panel');
 const intro1NextBtn   = $('intro1NextBtn');
 const intro2Panel     = $('intro2Panel');
@@ -401,6 +411,92 @@ function showSuccess() {
 
 restartBtn.addEventListener('click', () => location.reload());
 closeBtn.addEventListener('click',   () => successOverlay.classList.remove('show'));
+
+/* ══════════════════════════════════════════════════════
+   인증샷 기능
+   ══════════════════════════════════════════════════════ */
+let cameraStream = null;
+
+photoStartBtn.addEventListener('click', async () => {
+  photoStartBtn.style.display = 'none';
+  cameraWrap.style.display    = 'flex';
+  photoResult.style.display   = 'none';
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false,
+    });
+    cameraVideo.srcObject = cameraStream;
+  } catch (err) {
+    alert('카메라 접근이 거부되었습니다. 브라우저 설정에서 카메라 권한을 허용해 주세요.');
+    resetPhotoUI();
+  }
+});
+
+photoShootBtn.addEventListener('click', () => {
+  const video  = cameraVideo;
+  const canvas = photoCanvas;
+  const W = video.videoWidth  || 640;
+  const H = video.videoHeight || 480;
+  canvas.width  = W;
+  canvas.height = H;
+
+  const ctx = canvas.getContext('2d');
+
+  /* 좌우 반전 (셀카 자연스럽게) */
+  ctx.save();
+  ctx.scale(-1, 1);
+  ctx.drawImage(video, -W, 0, W, H);
+  ctx.restore();
+
+  /* 하단 텍스트 바 */
+  const barH = Math.round(H * 0.13);
+  ctx.fillStyle = 'rgba(0,0,0,0.62)';
+  ctx.fillRect(0, H - barH, W, barH);
+
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'middle';
+
+  /* 큰 텍스트 */
+  const bigSize = Math.round(barH * 0.42);
+  ctx.font      = `700 ${bigSize}px "Noto Serif KR", serif`;
+  ctx.fillStyle = '#e8c875';
+  ctx.fillText('🎉 교실 탈출 성공!', W / 2, H - barH * 0.65);
+
+  /* 작은 텍스트 */
+  const smallSize = Math.round(barH * 0.26);
+  ctx.font        = `500 ${smallSize}px "Noto Sans KR", sans-serif`;
+  ctx.fillStyle   = 'rgba(247,244,239,0.75)';
+  ctx.fillText('교실 탈출 프로젝트 3편 — 넌 누구냐', W / 2, H - barH * 0.25);
+
+  /* 다운로드 링크 연결 */
+  photoDownloadBtn.href = canvas.toDataURL('image/png');
+
+  stopCamera();
+  cameraWrap.style.display  = 'none';
+  photoResult.style.display = 'flex';
+});
+
+photoCancelBtn.addEventListener('click', resetPhotoUI);
+photoRetryBtn.addEventListener('click', () => {
+  photoResult.style.display = 'none';
+  photoStartBtn.style.display = 'block';
+});
+
+function stopCamera() {
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(t => t.stop());
+    cameraStream = null;
+  }
+  cameraVideo.srcObject = null;
+}
+
+function resetPhotoUI() {
+  stopCamera();
+  cameraWrap.style.display    = 'none';
+  photoResult.style.display   = 'none';
+  photoStartBtn.style.display = 'block';
+}
 
 /* ══════════════════════════════════════════════════════
    불꽃 효과

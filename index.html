@@ -117,6 +117,28 @@
           <button class="primary" id="restartBtn" style="background:var(--gold); border-color:var(--gold);">다시 수사하기</button>
           <button class="secondary" id="closeBtn" style="color:#f7f4ef; border-color:rgba(255,255,255,0.3);">창 닫기</button>
         </div>
+
+        <!-- ── 인증샷 영역 ── -->
+        <div class="photo-section" id="photoSection">
+          <div class="photo-divider">── 인증샷 ──</div>
+          <button class="photo-btn" id="photoStartBtn">📸 탈출 인증샷 찍기</button>
+
+          <!-- 카메라 미리보기 -->
+          <div class="camera-wrap" id="cameraWrap" style="display:none;">
+            <video id="cameraVideo" autoplay playsinline muted></video>
+            <button class="photo-shoot-btn" id="photoShootBtn">📷 찍기!</button>
+            <button class="photo-cancel-btn" id="photoCancelBtn">취소</button>
+          </div>
+
+          <!-- 찍힌 사진 -->
+          <div class="photo-result" id="photoResult" style="display:none;">
+            <canvas id="photoCanvas"></canvas>
+            <div style="display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap;">
+              <a class="photo-download-btn" id="photoDownloadBtn" download="교탈프3편_인증샷.png">💾 사진 저장</a>
+              <button class="photo-retry-btn" id="photoRetryBtn">🔄 다시 찍기</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -616,6 +616,107 @@
   to   { opacity: 0; transform: translate(-50%, -50%) scale(0.75) translateY(20px); }
 }
 
+/* ─── 인증샷 영역 ─── */
+.photo-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.photo-divider {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(247,244,239,0.35);
+  margin-bottom: 14px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.photo-btn {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: #f0ece3;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.photo-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.55); }
+.camera-wrap {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.camera-wrap video {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 2px;
+  border: 2px solid var(--gold);
+  display: block;
+  background: #000;
+  transform: scaleX(-1); /* 셀카 미러링 */
+}
+.photo-shoot-btn {
+  background: var(--gold);
+  color: #111;
+  border: none;
+  padding: 13px 36px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif;
+  border-radius: 2px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: opacity 0.15s;
+}
+.photo-shoot-btn:hover { opacity: 0.85; }
+.photo-cancel-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5);
+  padding: 8px 20px;
+  font-size: 13px;
+  font-family: "Noto Sans KR", sans-serif;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.photo-result { display: flex; flex-direction: column; align-items: center; margin-top: 16px; }
+.photo-result canvas {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 2px;
+  border: 2px solid var(--gold);
+  display: block;
+  position: static;
+  height: auto;
+}
+.photo-download-btn {
+  background: var(--gold);
+  color: #111;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.photo-retry-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #f0ece3;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-family: "Noto Sans KR", sans-serif;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
 /* ─── QR 모달 ─── */
 .qr-overlay {
   position: fixed; inset: 0;
