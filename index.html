@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>교실 탈출 프로젝트 — 넌 누구냐</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <span class="badge">기밀 파일</span>
+        <span class="badge sub">교탈프</span>
+        <h1>교실 탈출 프로젝트</h1>
+        <div style="font-family:'Noto Serif KR',serif; font-size:22px; color:var(--muted); margin-bottom:6px; letter-spacing:0.06em; font-weight:600;">— 넌 누구냐 —</div>
+        <div class="subtext">정체불명의 그림자를 추적하라 — 9개의 단서가 진실을 향한다</div>
+      </div>
+      <button class="secondary" id="resetTop">🔒 처음으로</button>
+    </div>
+
+    <!-- ── 시작 패널 ── -->
+    <section id="startPanel" class="panel">
+      <div class="card hero">
+        <div>
+          <div class="case-num">사건 개요 CASE FILE #003</div>
+          <h2 style="font-family:'Noto Serif KR',serif; font-size:26px; margin:14px 0 12px; letter-spacing:0.03em;">계단 끝의 그 사람은 누구인가.<br>9개의 단서로 정체를 밝혀라.</h2>
+          <p style="font-family:'Noto Serif KR',serif; color:var(--ink); line-height:2; font-size:15px; margin-bottom:16px; border-left:3px solid var(--gold); padding-left:14px; background:var(--paper); padding:12px 14px;">복도의 비밀을 밝혔을 때, 계단 끝에 누군가 서 있었다.<br>얼굴도, 이름도 알 수 없다. 하지만 그는 분명히 알고 있었다.<br>내가 여기 있다는 것을.</p>
+          <p style="color:var(--muted); line-height:1.9; font-size:13px;">문제 이미지를 분석하고 정답을 입력하면<br>다음 단서로 이동합니다. 제한 시도를 넘기면<br>처음부터 다시 시작됩니다.</p>
+          <div style="background:var(--paper); border:1px solid rgba(0,0,0,0.12); border-left:3px solid var(--red); border-radius:2px; padding:14px 16px; margin:16px 0; line-height:1.9; color:var(--muted); font-size:13px;">
+            🔍 정답을 맞히면 자동으로 다음 문제로 이동합니다.<br>
+            ✍️ 쉼표 없이 정답을 입력하세요.<br>
+            ❤️ 하트 15개가 모두 사라지면 1번부터 다시 시작합니다.
+          </div>
+          <button class="primary" id="startBtn" style="padding:14px 32px; font-size:15px;">🔍 수사 시작</button>
+        </div>
+        <div class="card dark" style="box-shadow:none; border-radius:2px;">
+          <div>
+            <div style="color:rgba(247,244,239,0.5); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;">오늘의 임무</div>
+            <div style="font-family:'Noto Serif KR',serif; font-size:24px; font-weight:700; margin-top:10px; line-height:1.4; letter-spacing:0.04em;">정체불명의<br>그림자를 밝혀라</div>
+          </div>
+          <div class="grid2" style="margin-top:24px;">
+            <div class="mini">
+              <div style="color:rgba(247,244,239,0.5); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">단서 수</div>
+              <div style="font-size:28px; font-weight:700; margin-top:8px; font-family:'Noto Serif KR',serif; color:var(--gold);">9</div>
+            </div>
+            <div class="mini">
+              <div style="color:rgba(247,244,239,0.5); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">제한 횟수</div>
+              <div style="font-size:28px; font-weight:700; margin-top:8px; font-family:'Noto Serif KR',serif; color:var(--red-dim);">15</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 게임 패널 ── -->
+    <section id="gamePanel" class="panel">
+      <div class="card" style="margin-bottom:18px;">
+        <div class="status">
+          <div>
+            <div style="color:var(--muted); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">진행 상황</div>
+            <div id="progress" style="font-weight:700; font-size:18px; font-family:'Noto Serif KR',serif;">문제 1 / 9</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <div class="pill"><span id="lifeText">정답 도전 횟수 15 / 15</span></div>
+            <div id="hearts" class="hearts"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="problem-head">
+          <div>
+            <div id="problemTitle" style="font-size:26px; font-weight:700; font-family:'Noto Serif KR',serif;">1번 문제</div>
+            <div class="instruction">정답 칸에 쉼표 없이 입력하시오.</div>
+            <div id="problemNote" class="note" style="display:none;"></div>
+          </div>
+          <div class="pill" id="problemNo" style="font-family:'Noto Serif KR',serif; font-size:12px; letter-spacing:0.1em;">문제 번호 1</div>
+        </div>
+
+        <div class="imgbox" id="problemMedia"></div>
+
+        <div class="controls">
+          <input id="answerInput" type="text" placeholder="단서를 해독하여 정답을 입력하세요" autocomplete="off" />
+          <button class="primary" id="submitBtn">🔍 정답 입력</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── 성공 오버레이 ── -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <canvas id="fireworks"></canvas>
+      <div class="success-inner">
+        <div class="icon">👤</div>
+        <h2>정체 파악 완료</h2>
+        <p style="font-family:'Noto Serif KR',serif;">마침내 그 사람의 정체가 드러났다.<br>모든 단서가 하나로 이어지는 순간,<br>계단 아래에서 발소리가 멀어져 갔다.</p>
+        <div style="margin-top:28px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <button class="primary" id="restartBtn" style="background:var(--gold); border-color:var(--gold);">다시 수사하기</button>
+          <button class="secondary" id="closeBtn" style="color:#f7f4ef; border-color:rgba(255,255,255,0.3);">창 닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 인트로 1: 타이틀 화면 ── -->
+  <div class="intro-overlay active" id="intro1Panel">
+    <div class="intro1-content">
+      <div class="intro1-label">CLASSROOM ESCAPE PROJECT</div>
+      <h1 class="intro1-title">교실 탈출 프로젝트</h1>
+      <div class="intro1-sub">— 넌 누구냐 —</div>
+      <button class="intro-btn" id="intro1NextBtn">다음 ▶</button>
+    </div>
+  </div>
+
+  <!-- ── 인트로 2: 교실 장면 + 대화 ── -->
+  <div class="intro-overlay" id="intro2Panel">
+    <div class="classroom-scene">
+      <div class="classroom-ceiling"></div>
+      <div class="classroom-window left-win"></div>
+      <div class="classroom-window right-win"></div>
+      <div class="classroom-board">
+        <div class="chalk-text">
+          <span class="chalk-line1">교실 탈출 프로젝트</span>
+          <span class="chalk-divider">— 넌 누구냐 —</span>
+          <span class="chalk-credit">created by. 민프피</span>
+        </div>
+      </div>
+      <div class="classroom-floor">
+        <div class="desk-row">
+          <div class="desk-unit"></div>
+          <div class="desk-unit"></div>
+          <div class="desk-unit"></div>
+          <div class="desk-unit"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 정체불명의 실루엣 (2번째 대사에서 등장) -->
+    <div class="silhouette-wrap" id="silhouetteWrap">
+      <svg class="silhouette-svg" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="silGrad" cx="50%" cy="30%" r="60%">
+            <stop offset="0%"  stop-color="#1a1a2e"/>
+            <stop offset="100%" stop-color="#06060e"/>
+          </radialGradient>
+          <filter id="silGlow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+        </defs>
+        <!-- 머리 -->
+        <circle cx="50" cy="30" r="20" fill="url(#silGrad)"/>
+        <!-- 몸통 -->
+        <path d="M28 58 Q24 110 20 160 L36 160 L42 120 L58 120 L64 160 L80 160 Q76 110 72 58 Q62 50 50 50 Q38 50 28 58Z" fill="url(#silGrad)"/>
+        <!-- 왼팔 -->
+        <path d="M28 62 Q10 90 14 128 L24 124 Q20 96 34 74Z" fill="url(#silGrad)"/>
+        <!-- 오른팔 -->
+        <path d="M72 62 Q90 90 86 128 L76 124 Q80 96 66 74Z" fill="url(#silGrad)"/>
+        <!-- 물음표 -->
+        <text x="50" y="95" text-anchor="middle" font-size="28" font-family="serif"
+              fill="rgba(184,150,62,0.55)" font-weight="700">?</text>
+        <!-- 눈 광채 -->
+        <ellipse cx="43" cy="28" rx="4" ry="3" fill="rgba(184,150,62,0.2)"/>
+        <ellipse cx="57" cy="28" rx="4" ry="3" fill="rgba(184,150,62,0.2)"/>
+      </svg>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="dialogue-speaker">◆</div>
+      <div class="dialogue-text" id="introDialogueText"></div>
+      <div class="dialogue-cursor" id="dialogueCursor">|</div>
+      <div class="dialogue-footer">
+        <div class="dialogue-dots" id="dialogueDots">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <button class="intro-btn small" id="introNextBtn" style="display:none;">다음 ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="credit">created by. 민프피</div>
+
+  <!-- 분필 질감 SVG 필터 -->
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="chalk">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
