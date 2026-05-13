@@ -160,6 +160,9 @@ const startPanel    = $('startPanel');
 const gamePanel     = $('gamePanel');
 const startBtn      = $('startBtn');
 const resetTopBtn   = $('resetTop');
+const qrBtn         = $('qrBtn');
+const qrOverlay     = $('qrOverlay');
+const qrCloseBtn    = $('qrCloseBtn');
 const answerInput   = $('answerInput');
 const submitBtn     = $('submitBtn');
 const feedbackEl    = $('feedback');
@@ -270,6 +273,10 @@ startBtn.addEventListener('click', () => {
 resetTopBtn.addEventListener('click', () => {
   if (confirm('처음으로 돌아가시겠습니까?')) location.reload();
 });
+
+qrBtn.addEventListener('click',      () => qrOverlay.classList.add('show'));
+qrCloseBtn.addEventListener('click', () => qrOverlay.classList.remove('show'));
+qrOverlay.addEventListener('click',  e => { if (e.target === qrOverlay) qrOverlay.classList.remove('show'); });
 
 /* ══════════════════════════════════════════════════════
    게임 로직

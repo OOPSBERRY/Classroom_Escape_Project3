@@ -18,7 +18,20 @@
         <div style="font-family:'Noto Serif KR',serif; font-size:22px; color:var(--muted); margin-bottom:6px; letter-spacing:0.06em; font-weight:600;">— 넌 누구냐 —</div>
         <div class="subtext">정체불명의 그림자를 추적하라 — 9개의 단서가 진실을 향한다</div>
       </div>
-      <button class="secondary" id="resetTop">🔒 처음으로</button>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="secondary" id="qrBtn">📱 QR 코드</button>
+        <button class="secondary" id="resetTop">🔒 처음으로</button>
+      </div>
+    </div>
+
+    <!-- ── QR 모달 ── -->
+    <div class="qr-overlay" id="qrOverlay">
+      <div class="qr-card">
+        <div class="qr-title">📱 접속 QR 코드</div>
+        <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fclassroomescapeproject3.netlify.app%2F" alt="QR 코드" />
+        <div class="qr-url">classroomescapeproject3.netlify.app</div>
+        <button class="secondary" id="qrCloseBtn" style="margin-top:18px; color:var(--ink); border-color:var(--border);">닫기</button>
+      </div>
     </div>
 
     <!-- ── 시작 패널 ── -->
