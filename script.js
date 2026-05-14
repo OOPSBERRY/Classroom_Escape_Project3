@@ -176,6 +176,7 @@ const problemNo     = $('problemNo');
 const successOverlay= $('successOverlay');
 
 const photoStartBtn   = $('photoStartBtn');
+const cameraOverlay   = $('cameraOverlay');
 const cameraWrap      = $('cameraWrap');
 const cameraVideo     = $('cameraVideo');
 const photoShootBtn   = $('photoShootBtn');
@@ -414,9 +415,9 @@ function showSuccess() {
 let cameraStream = null;
 
 photoStartBtn.addEventListener('click', async () => {
-  photoStartBtn.style.display = 'none';
-  cameraWrap.style.display    = 'flex';
-  photoResult.style.display   = 'none';
+  cameraOverlay.classList.add('show');
+  cameraWrap.style.display  = 'flex';
+  photoResult.style.display = 'none';
   try {
     cameraStream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
@@ -479,10 +480,14 @@ photoShootBtn.addEventListener('click', () => {
   }, 1800);
 });
 
-photoCancelBtn.addEventListener('click', resetPhotoUI);
+photoCancelBtn.addEventListener('click', () => {
+  resetPhotoUI();
+  cameraOverlay.classList.remove('show');
+});
 photoRetryBtn.addEventListener('click', () => {
   photoResult.style.display = 'none';
-  photoStartBtn.style.display = 'block';
+  cameraWrap.style.display  = 'flex';
+  cameraVideo.srcObject     = cameraStream;
 });
 
 function stopCamera() {
@@ -495,9 +500,9 @@ function stopCamera() {
 
 function resetPhotoUI() {
   stopCamera();
-  cameraWrap.style.display    = 'none';
-  photoResult.style.display   = 'none';
-  photoStartBtn.style.display = 'block';
+  cameraOverlay.classList.remove('show');
+  cameraWrap.style.display  = 'flex';
+  photoResult.style.display = 'none';
 }
 
 /* ══════════════════════════════════════════════════════
