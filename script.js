@@ -186,6 +186,7 @@ const photoResult     = $('photoResult');
 const photoCanvas     = $('photoCanvas');
 const photoDownloadBtn= $('photoDownloadBtn');
 const photoRetryBtn   = $('photoRetryBtn');
+const horrorOverlay   = $('horrorOverlay');
 
 const intro1Panel     = $('intro1Panel');
 const intro1NextBtn   = $('intro1NextBtn');
@@ -475,6 +476,12 @@ photoShootBtn.addEventListener('click', () => {
   stopCamera();
   cameraWrap.style.display  = 'none';
   photoResult.style.display = 'flex';
+
+  /* 공포 텍스트 등장 */
+  horrorOverlay.classList.add('show');
+  setTimeout(() => {
+    horrorOverlay.classList.remove('show');
+  }, 4600);
 });
 
 photoCancelBtn.addEventListener('click', resetPhotoUI);
