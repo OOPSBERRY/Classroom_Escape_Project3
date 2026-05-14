@@ -208,6 +208,8 @@ const DIALOGUES = [
 /* ══════════════════════════════════════════════════════
    인트로 1 — 타이틀 화면
    ══════════════════════════════════════════════════════ */
+$('intro1QrBtn').addEventListener('click', () => qrOverlay.classList.add('show'));
+
 intro1NextBtn.addEventListener('click', () => {
   intro1Panel.classList.remove('active');
   intro2Panel.classList.add('active');
