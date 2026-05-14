@@ -277,6 +277,7 @@ introNextBtn.addEventListener('click', () => {
 startBtn.addEventListener('click', () => {
   startPanel.classList.remove('active');
   gamePanel.classList.add('active');
+  qrBtn.style.display = 'none';
   initGame();
 });
 
