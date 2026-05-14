@@ -446,10 +446,10 @@ photoShootBtn.addEventListener('click', () => {
   ctx.drawImage(video, -W, 0, W, H);
   ctx.restore();
 
-  /* 하단 텍스트 바 */
+  /* 상단 텍스트 바 */
   const barH = Math.round(H * 0.13);
   ctx.fillStyle = 'rgba(0,0,0,0.62)';
-  ctx.fillRect(0, H - barH, W, barH);
+  ctx.fillRect(0, 0, W, barH);
 
   ctx.textAlign    = 'center';
   ctx.textBaseline = 'middle';
@@ -458,13 +458,13 @@ photoShootBtn.addEventListener('click', () => {
   const bigSize = Math.round(barH * 0.42);
   ctx.font      = `700 ${bigSize}px "Noto Serif KR", serif`;
   ctx.fillStyle = '#e8c875';
-  ctx.fillText('🎉 교실 탈출 성공!', W / 2, H - barH * 0.65);
+  ctx.fillText('🎉 교실 탈출 성공!', W / 2, barH * 0.35);
 
   /* 작은 텍스트 */
   const smallSize = Math.round(barH * 0.26);
   ctx.font        = `500 ${smallSize}px "Noto Sans KR", sans-serif`;
   ctx.fillStyle   = 'rgba(247,244,239,0.75)';
-  ctx.fillText('교실 탈출 프로젝트 3편 — 넌 누구냐', W / 2, H - barH * 0.25);
+  ctx.fillText('교실 탈출 프로젝트 3편 — 넌 누구냐', W / 2, barH * 0.75);
 
   /* 다운로드 링크 연결 */
   photoDownloadBtn.href = canvas.toDataURL('image/png');
