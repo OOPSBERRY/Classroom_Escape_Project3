@@ -174,8 +174,6 @@ const problemNote   = $('problemNote');
 const problemMedia  = $('problemMedia');
 const problemNo     = $('problemNo');
 const successOverlay= $('successOverlay');
-const restartBtn    = $('restartBtn');
-const closeBtn      = $('closeBtn');
 
 const photoStartBtn   = $('photoStartBtn');
 const cameraWrap      = $('cameraWrap');
@@ -409,9 +407,6 @@ function showSuccess() {
   successOverlay.classList.add('show');
   launchFireworks();
 }
-
-restartBtn.addEventListener('click', () => location.reload());
-closeBtn.addEventListener('click',   () => successOverlay.classList.remove('show'));
 
 /* ══════════════════════════════════════════════════════
    인증샷 기능
