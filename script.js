@@ -476,7 +476,7 @@ photoShootBtn.addEventListener('click', () => {
   /* 사진 본 뒤 공포 텍스트 등장 */
   setTimeout(() => {
     horrorOverlay.classList.add('show');
-    setTimeout(() => horrorOverlay.classList.remove('show'), 4600);
+    setTimeout(() => horrorOverlay.classList.remove('show'), 13600);
   }, 1800);
 });
 
