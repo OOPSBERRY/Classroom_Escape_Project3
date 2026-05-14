@@ -477,11 +477,11 @@ photoShootBtn.addEventListener('click', () => {
   cameraWrap.style.display  = 'none';
   photoResult.style.display = 'flex';
 
-  /* 공포 텍스트 등장 */
-  horrorOverlay.classList.add('show');
+  /* 사진 본 뒤 공포 텍스트 등장 */
   setTimeout(() => {
-    horrorOverlay.classList.remove('show');
-  }, 4600);
+    horrorOverlay.classList.add('show');
+    setTimeout(() => horrorOverlay.classList.remove('show'), 4600);
+  }, 1800);
 });
 
 photoCancelBtn.addEventListener('click', resetPhotoUI);
